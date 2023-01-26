@@ -45,13 +45,13 @@ const event = (eventName: string) => {
     created_at: new Date(),
   };
 
-  // fetch(`${config.BASE_URL}/tics/event`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({ session: state.session, event }),
-  // });
+  fetch(`${config.BASE_URL}/tics/event`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ session: state.session, event }),
+  });
 };
 
 const AnalyClient = (projectKey: string) => {
