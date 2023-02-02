@@ -1,6 +1,5 @@
 import SHA256 from "crypto-js/sha256";
 import { v4 as uuid } from "uuid";
-import config from "./lib/config";
 import log from "./logger";
 import { Event, Session } from "./types";
 
@@ -13,6 +12,8 @@ const state: State = {
   projectKey: "",
   session: null,
 };
+
+let API_BASE_URL = "";
 
 const init = () => {
   const rawStrSession = sessionStorage.getItem("analy_session");
@@ -62,7 +63,7 @@ const event = (eventName: string) => {
     created_at: new Date(),
   };
 
-  fetch(`${config.BASE_URL}/tics/event`, {
+  fetch(`${API_BASE_URL}/tics/event`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,10 +72,11 @@ const event = (eventName: string) => {
   });
 };
 
-const AnalyClient = (projectKey: string) => {
+const AnalyClient = (projectKey: string, apiBaseUrl: string) => {
   if (!projectKey) return log("error", "No project key provided!");
 
   state.projectKey = projectKey;
+  API_BASE_URL = apiBaseUrl;
   init();
 
   return {

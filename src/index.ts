@@ -1,4 +1,5 @@
 import AnalyClient from "./AnalyClient";
+import config from "./lib/config";
 import log from "./logger";
 
 export function startClient() {
@@ -8,10 +9,14 @@ export function startClient() {
     return;
   }
 
-  const key = document.querySelector("[analy-key]")?.getAttribute("analy-key");
+  const configDivElem = document.getElementById("analy-config");
+
+  const key = configDivElem?.getAttribute("analy-key");
+  const baseUrl = configDivElem?.getAttribute("analy-base-url") || config.BASE_URL;
+
   if (!key) return log("error", "No API key provided!");
 
-  const client = AnalyClient(key);
+  const client = AnalyClient(key, baseUrl);
 
   const registeredElements = document.querySelectorAll("[analy-event]");
 
