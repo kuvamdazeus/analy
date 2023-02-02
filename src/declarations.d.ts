@@ -1,5 +1,6 @@
 import "react";
 
+// DOESN'T WORK
 declare module "react" {
   interface HTMLAttributes<T> {
     "analy-dom-event": ElementEventMap;
