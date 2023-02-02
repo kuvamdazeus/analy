@@ -2,7 +2,7 @@ import AnalyClient from "./AnalyClient";
 import config from "./lib/config";
 import log from "./logger";
 
-export function startClient() {
+function startClient() {
   try {
     window;
   } catch (e) {
