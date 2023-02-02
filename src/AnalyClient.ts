@@ -16,19 +16,36 @@ const state: State = {
 
 const init = () => {
   const rawStrSession = sessionStorage.getItem("analy_session");
+  const userHash = localStorage.getItem("analy_user_hash");
   const session: Session | null = rawStrSession ? JSON.parse(rawStrSession) : null;
 
-  if (!session) {
+  if (!userHash && !session) {
     state.session = {
       id: uuid(),
       user_hash: SHA256(Date.now().toString() + Math.random().toString()).toString(),
       project_key: state.projectKey,
     };
 
+    localStorage.setItem("analy_user_hash", state.session.user_hash);
     sessionStorage.setItem("analy_session", JSON.stringify(state.session));
 
+    log("log", "User init");
     event("user_init");
-  } else {
+  }
+
+  if (userHash && !session) {
+    state.session = {
+      id: uuid(),
+      user_hash: userHash,
+      project_key: state.projectKey,
+    };
+
+    sessionStorage.setItem("analy_session", JSON.stringify(state.session));
+
+    event("page_load");
+  }
+
+  if (userHash && session) {
     state.session = session;
     event("page_load");
   }

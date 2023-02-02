@@ -27,6 +27,16 @@ export function startClient() {
       client.event(customEventName);
     });
   });
+
+  let lastUrl = window.location.href;
+  setInterval(() => {
+    if (lastUrl !== window.location.href) {
+      if (!client) return;
+      client.event("page_load");
+    }
+
+    lastUrl = window.location.href;
+  }, 10);
 }
 
 startClient();
