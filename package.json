@@ -1,6 +1,6 @@
 {
   "name": "analy",
-  "version": "0.2 (beta)",
+  "version": "0.2",
   "main": "dist/index.js",
   "license": "MIT",
   "files": [
