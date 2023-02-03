@@ -4,7 +4,7 @@ import log from "./logger";
 
 function startClient() {
   try {
-    window;
+    if (!document || !window) throw new Error("");
   } catch (e) {
     return;
   }

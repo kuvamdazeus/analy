@@ -27,6 +27,8 @@ export interface Event {
   session_id: string;
 
   name: string;
+  referrer: string;
+  country: string;
   window_url: string;
   created_at: Date;
 

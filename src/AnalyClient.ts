@@ -14,6 +14,7 @@ const state: State = {
 };
 
 let API_BASE_URL = "";
+let countryPromise = fetch("https://savemyloc.kuvam.workers.dev").then((res) => res.text());
 
 const init = () => {
   const rawStrSession = sessionStorage.getItem("analy_session");
@@ -52,14 +53,17 @@ const init = () => {
   }
 };
 
-const event = (eventName: string) => {
+const event = async (eventName: string) => {
   if (!state.session) return log("error", "No session found!");
+  const country = (await countryPromise) || "";
 
   const event: Event = {
     id: uuid(),
     session_id: state.session.id,
     name: eventName,
     window_url: window.location.href,
+    referrer: document.referrer || "",
+    country,
     created_at: new Date(),
   };
 
