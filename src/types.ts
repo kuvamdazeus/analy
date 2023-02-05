@@ -30,6 +30,7 @@ export interface Event {
   referrer: string;
   country: string;
   window_url: string;
+  date: string;
   created_at: Date;
 
   session?: Session;

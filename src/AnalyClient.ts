@@ -65,6 +65,7 @@ const event = async (eventName: string) => {
     window_url: window.location.href,
     referrer: isValidUrl(document.referrer) ? new URL(document.referrer).hostname : "",
     country,
+    date: new Date().toISOString().split("T")[0],
     created_at: new Date(),
   };
 
