@@ -1,5 +1,6 @@
 import SHA256 from "crypto-js/sha256";
 import { v4 as uuid } from "uuid";
+import { isValidUrl } from "./helpers";
 import log from "./logger";
 import { Event, Session } from "./types";
 
@@ -62,7 +63,7 @@ const event = async (eventName: string) => {
     session_id: state.session.id,
     name: eventName,
     window_url: window.location.href,
-    referrer: document.referrer || "",
+    referrer: isValidUrl(document.referrer) ? new URL(document.referrer).hostname : "",
     country,
     created_at: new Date(),
   };
