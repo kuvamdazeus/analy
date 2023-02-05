@@ -1,11 +1,10 @@
 {
   "name": "analy",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "dist/index.js",
   "license": "MIT",
   "files": [
-    "dist/index.js",
-    "dist/index.d.ts"
+    "dist"
   ],
   "scripts": {
     "build": "tsup src/index.ts --minify --dts --treeshake safest",
