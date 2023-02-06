@@ -33,14 +33,14 @@ function startClient() {
     });
   });
 
-  let lastUrl = window.location.href;
+  let lastUrl = window.location.pathname;
   setInterval(() => {
-    if (lastUrl !== window.location.href) {
+    if (lastUrl !== window.location.pathname) {
       if (!client) return;
       client.event("page_load");
     }
 
-    lastUrl = window.location.href;
+    lastUrl = window.location.pathname;
   }, 10);
 }
 
