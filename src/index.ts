@@ -44,4 +44,8 @@ function startClient() {
   }, 10);
 }
 
-startClient();
+try {
+  startClient();
+} catch (err) {
+  log("error", err);
+}
