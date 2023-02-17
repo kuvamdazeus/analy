@@ -21,6 +21,7 @@ Second, create a `<div />` anywhere in the app as long as it is visible on every
   analy-key="bdeb62c0be50aa233**********************aec4"
 />
 ```
+> Note: Log into Dashboard & Create a project to get your API key
 
 Here, `analy-base-url` is only to be used when self-hosting the dashboard, else avoid it altogether!
 
@@ -31,3 +32,6 @@ Third, provide event names & event handlers to elements like so:
 ```html
 <button analy-event="user_login_start" analy-dom-event="onclick">Login</button>
 ```
+
+And... thats it!
+You're all set up & ready to go ✨
