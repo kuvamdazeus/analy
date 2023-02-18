@@ -69,13 +69,13 @@ const event = async (eventName: string) => {
     created_at: new Date(),
   };
 
-  fetch(`${API_BASE_URL}/tics/event`, {
+  fetch(`${API_BASE_URL}/api/tics/event`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ session: state.session, event }),
-  });
+  }).then((res) => console.log(res.status));
 };
 
 const AnalyClient = (projectKey: string, apiBaseUrl: string) => {

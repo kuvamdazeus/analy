@@ -12,7 +12,7 @@ function startClient() {
   const configDivElem = document.getElementById("analy-config");
 
   const key = configDivElem?.getAttribute("analy-key");
-  const baseUrl = configDivElem?.getAttribute("analy-base-url") || config.BASE_URL;
+  const baseUrl = configDivElem?.getAttribute("analy-base-url") || config().BASE_URL;
 
   if (!key) return log("error", "No API key provided!");
 
