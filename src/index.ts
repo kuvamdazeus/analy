@@ -4,7 +4,7 @@ import log from "./logger";
 
 function startClient() {
   try {
-    if (!document || !window) throw new Error("");
+    if (typeof window === "undefined") throw new Error("");
   } catch (e) {
     return;
   }
