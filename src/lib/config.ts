@@ -1,5 +1,7 @@
 const config = () => ({
-  BASE_URL: window.location.protocol.startsWith("https") ? "" : "http://localhost:3000",
+  BASE_URL: window.location.protocol.startsWith("https")
+    ? "https://analy-dashboard.vercel.app"
+    : "http://localhost:3000",
   authHeader: (token: string) => ({ Authorization: "Bearer " + token }),
 });
 
