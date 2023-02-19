@@ -75,7 +75,7 @@ const event = async (eventName: string) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ session: state.session, event }),
-  }).then((res) => console.log(res.status));
+  });
 };
 
 const AnalyClient = (projectKey: string, apiBaseUrl: string) => {
