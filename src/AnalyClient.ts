@@ -58,6 +58,8 @@ const event = async (eventName: string) => {
   if (!state.session) return log("error", "No session found!");
   const country = (await countryPromise) || "";
 
+  log("log", "referrer", document.referrer);
+
   const event: Event = {
     id: uuid(),
     session_id: state.session.id,
