@@ -73,6 +73,7 @@ const event = async (eventName: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Referrer-Policy": "origin",
     },
     body: JSON.stringify({ session: state.session, event }),
   });
