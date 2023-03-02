@@ -44,6 +44,22 @@ function startClient() {
   }, 10);
 }
 
+export function getFeedbackUrl() {
+  let sessionId: string;
+  let baseUrl: string;
+
+  try {
+    const configDivElem = document.getElementById("analy-config");
+
+    baseUrl = configDivElem?.getAttribute("analy-base-url") || config().BASE_URL;
+    sessionId = JSON.parse(sessionStorage.getItem("analy_session") || "").id;
+  } catch {
+    return "";
+  }
+
+  return `${baseUrl}/feedback?sid=${sessionId}`;
+}
+
 try {
   startClient();
 } catch (err) {
