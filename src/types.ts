@@ -1,3 +1,5 @@
+export type AnalyDomEvent = "click" | "hover";
+
 export interface User {
   id: string;
 

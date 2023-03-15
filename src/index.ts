@@ -1,6 +1,9 @@
 import AnalyClient from "./AnalyClient";
 import config from "./lib/config";
 import log from "./logger";
+import type { AnalyDomEvent } from "./types";
+
+let client: ReturnType<typeof AnalyClient>;
 
 function startClient() {
   try {
@@ -16,21 +19,31 @@ function startClient() {
 
   if (!key) return log("error", "No API key provided!");
 
-  const client = AnalyClient(key, baseUrl);
+  client = AnalyClient(key, baseUrl);
 
   const registeredElements = document.querySelectorAll("[analy-event]");
 
   registeredElements.forEach((element) => {
     const customEventName = element.getAttribute("analy-event"); // "user_login_start"
-    const domEvent = element.getAttribute("analy-dom-event"); // "onclick" | "onmouseenter" | etc.
+    const domEvent = element.getAttribute("analy-dom-event") as AnalyDomEvent; // "onclick" | "onmouseenter" | etc.
 
     if (!customEventName || !domEvent) return;
 
-    element.addEventListener(domEvent, () => {
-      if (!client) return;
+    switch (domEvent) {
+      case "click":
+        element.addEventListener("click", () => {
+          if (!client) return;
+          client.event(customEventName);
+        });
+        break;
 
-      client.event(customEventName);
-    });
+      case "hover":
+        element.addEventListener("mouseenter", () => {
+          if (!client) return;
+          client.event(customEventName);
+        });
+        break;
+    }
   });
 
   let lastUrl = window.location.pathname;
@@ -58,6 +71,11 @@ export function getFeedbackUrl() {
   }
 
   return `${baseUrl}/feedback?sid=${sessionId}`;
+}
+
+export function trackEvent(eventName: string) {
+  if (!client) return;
+  client.event(eventName);
 }
 
 try {
