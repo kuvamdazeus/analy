@@ -44,14 +44,13 @@ const init = () => {
     };
 
     sessionStorage.setItem("analy_session", JSON.stringify(state.session));
-
-    event("page_load");
   }
 
   if (userHash && session) {
     state.session = session;
-    event("page_load");
   }
+
+  event("page_load");
 };
 
 const event = async (eventName: string) => {
