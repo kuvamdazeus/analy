@@ -1,5 +1,12 @@
 # Analy Web Client (WIP)
 
+## What is it?
+Analy is a fully open-source & self-hostable Analytics client with backend written in Next.js.
+
+This repo contains the code for the tracker script for tracking website usage.
+
+The script uses self-generated ids for session & user identification and saving the ids in session & local storage, not using cookies to maximize user privacy.
+
 ## Install
 
 ```
