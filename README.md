@@ -7,6 +7,10 @@ This repo contains the code for the tracker script for tracking website usage.
 
 The script uses self-generated ids for session & user identification and saving the ids in session & local storage, not using cookies to maximize user privacy.
 
+Code for live dashboard is hosted at https://github.com/kuvamdazeus/analy-dashboard
+
+[Here](https://analy-dashboard.vercel.app/dashboard/53dbd800-cda6-4b1d-9ee8-ccf1802bbe0e) is a working demo of the live dashboard.
+
 ## Install
 
 ```
